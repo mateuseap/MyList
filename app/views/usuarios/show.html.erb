@@ -1,0 +1,14 @@
+<strong><p id="notice"><%= notice %></p></strong>
+
+<center><h1>Listagem de Tarefas</h1></center>
+<div class="usuario_sub_title">
+  <center><strong>Usuário<center>
+  <strong><%= @usuario.email %><strong>
+</div>
+
+<div id="tarefas_wrapper">
+  <%= render @usuario.tarefas %>
+  <div id="form">
+    <%= render "tarefas/form" %>
+  </div>
+</div>

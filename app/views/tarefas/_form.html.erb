@@ -1,0 +1,5 @@
+<%= form_for([@usuario, @usuario.tarefas.build]) do |f| %>
+  <%= f.text_field :nome, placeholder: "Nome" %>
+  <%= f.text_field :descricao, placeholder: "Descrição" %>
+  <%= f.submit "Criar Tarefa" %>
+<% end %>

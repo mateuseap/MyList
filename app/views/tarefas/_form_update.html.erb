@@ -1,0 +1,7 @@
+<%= form_with model: tarefa, url: usuario_tarefa_path(tarefa.usuario_id), method: :patch do |form| %>
+    <%= form.text_field :nome, placeholder: "Nome" %>
+    <%= form.text_field :descricao, placeholder: "Descrição" %>
+    <div class="links">
+        <%= form.submit "Editar"%>
+    </div>
+<% end %>

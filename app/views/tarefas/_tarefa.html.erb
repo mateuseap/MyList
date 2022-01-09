@@ -1,0 +1,41 @@
+<div class="row clearfix">
+    <% if tarefa.finalizada? %>
+        <div class="finalizada">
+            <%= button_to finalizada_usuario_tarefa_path(@usuario, tarefa.id), method: :patch do %>
+                <i style="opacity: 0.4;" class="fa fa-check"></i>
+            <% end %>
+        </div>
+        <div class="tarefa">
+            <p style="opacity: 0.4;">
+                <strike>
+                    <strong>Nome:</strong> <%= tarefa.nome %>
+                    <br>
+                    <strong>Descrição:</strong> <%= tarefa.descricao %>
+                </strike>
+            </p>
+        </div>
+        <div class="lixeiro">
+            <%= button_to "Deletar", usuario_tarefa_path(@usuario, tarefa.id), method: :delete, data: { confirm: "Você tem certeza?" } %>
+        </div>
+    <% else %>
+        <div class="finalizada">
+            <%= button_to finalizada_usuario_tarefa_path(@usuario, tarefa.id), method: :patch do %>
+                <i class="fa fa-circle-thin"></i>
+            <% end %>
+        </div>
+        <div class="tarefa">
+            <p>
+                <strong>Nome:</strong> <%= tarefa.nome %>
+                <br>
+                <strong>Descrição:</strong> <%= tarefa.descricao %>
+            </p>
+        </div>
+        <div class="lixeiro">
+            <%= button_to "Deletar", usuario_tarefa_path(@usuario, tarefa.id), method: :delete, data: { confirm: "Você tem certeza?" } %>
+            <%= link_to edit_usuario_tarefa_path(@usuario, tarefa), method: :patch do %>
+                <i class="fa fa-pencil-square"></i>
+            <% end %>
+        <div>
+        </div>
+    <% end %>
+</div>
