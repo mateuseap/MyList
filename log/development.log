@@ -30088,3 +30088,552 @@ Processing by UsuariosController#show as HTML
 Completed 200 OK in 39ms (Views: 16.4ms | ActiveRecord: 1.4ms | Allocations: 5907)
 
 
+Started GET "/" for 127.0.0.1 at 2022-01-09 20:56:13 -0300
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsuariosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/index.html.erb within layouts/application
+  Rendered usuarios/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 643)
+  Rendered layout layouts/application.html.erb (Duration: 192.8ms | Allocations: 36100)
+Completed 200 OK in 237ms (Views: 201.7ms | ActiveRecord: 0.0ms | Allocations: 44695)
+
+
+Started GET "/usuarios/new" for 127.0.0.1 at 2022-01-09 20:56:21 -0300
+Processing by UsuariosController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/new.html.erb within layouts/application
+  Rendered usuarios/_form.html.erb (Duration: 12.9ms | Allocations: 3738)
+  Rendered usuarios/new.html.erb within layouts/application (Duration: 15.4ms | Allocations: 4114)
+  Rendered layout layouts/application.html.erb (Duration: 21.1ms | Allocations: 6629)
+Completed 200 OK in 36ms (Views: 22.3ms | ActiveRecord: 0.9ms | Allocations: 11339)
+
+
+Started POST "/usuarios" for 127.0.0.1 at 2022-01-09 20:56:24 -0300
+Processing by UsuariosController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "usuario"=>{"email"=>"meap@cin.ufpe.br", "senha"=>"006Matth"}, "commit"=>"Cadastrar-se"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/usuarios_controller.rb:27:in `block in create'
+  [1m[36mUsuario Create (0.6ms)[0m  [1m[32mINSERT INTO "usuarios" ("email", "senha", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "meap@cin.ufpe.br"], ["senha", "006Matth"], ["created_at", "2022-01-09 23:56:24.340836"], ["updated_at", "2022-01-09 23:56:24.340836"]]
+  ↳ app/controllers/usuarios_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (403.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/usuarios_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/usuarios/32
+Completed 302 Found in 417ms (ActiveRecord: 403.9ms | Allocations: 3972)
+
+
+Started GET "/usuarios/32" for 127.0.0.1 at 2022-01-09 20:56:24 -0300
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"32"}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 32], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios_controller.rb:63:in `set_usuario'
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/show.html.erb within layouts/application
+  [1m[36mTarefa Load (0.3ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ?[0m  [["usuario_id", 32]]
+  ↳ app/views/usuarios/show.html.erb:10
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 30)
+  Rendered tarefas/_form.html.erb (Duration: 15.0ms | Allocations: 6215)
+  Rendered usuarios/show.html.erb within layouts/application (Duration: 39.4ms | Allocations: 15423)
+  Rendered layout layouts/application.html.erb (Duration: 45.1ms | Allocations: 17926)
+Completed 200 OK in 52ms (Views: 44.8ms | ActiveRecord: 1.7ms | Allocations: 21029)
+
+
+Started POST "/usuarios/32/tarefas" for 127.0.0.1 at 2022-01-09 20:56:29 -0300
+Processing by TarefasController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "tarefa"=>{"nome"=>"aa", "descricao"=>"aaa"}, "commit"=>"Criar Tarefa", "usuario_id"=>"32"}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 32], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:43:in `set_usuario'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/tarefas_controller.rb:6:in `create'
+  [1m[36mTarefa Create (0.7ms)[0m  [1m[32mINSERT INTO "tarefas" ("nome", "descricao", "usuario_id", "created_at", "updated_at", "finalizada") VALUES (?, ?, ?, ?, ?, ?)[0m  [["nome", "aa"], ["descricao", "aaa"], ["usuario_id", 32], ["created_at", "2022-01-09 23:56:29.688065"], ["updated_at", "2022-01-09 23:56:29.688065"], ["finalizada", nil]]
+  ↳ app/controllers/tarefas_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (385.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/tarefas_controller.rb:6:in `create'
+Redirected to http://127.0.0.1:3000/usuarios/32
+Completed 302 Found in 405ms (ActiveRecord: 387.3ms | Allocations: 4434)
+
+
+Started GET "/usuarios/32" for 127.0.0.1 at 2022-01-09 20:56:30 -0300
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"32"}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 32], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios_controller.rb:63:in `set_usuario'
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/show.html.erb within layouts/application
+  [1m[36mTarefa Load (0.3ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ?[0m  [["usuario_id", 32]]
+  ↳ app/views/usuarios/show.html.erb:10
+  Rendered collection of tarefas/_tarefa.html.erb [1 times] (Duration: 6.1ms | Allocations: 995)
+  Rendered tarefas/_form.html.erb (Duration: 2.9ms | Allocations: 424)
+  Rendered usuarios/show.html.erb within layouts/application (Duration: 17.0ms | Allocations: 2642)
+  Rendered layout layouts/application.html.erb (Duration: 27.0ms | Allocations: 5127)
+Completed 200 OK in 34ms (Views: 28.4ms | ActiveRecord: 0.6ms | Allocations: 5978)
+
+
+Started GET "/usuarios/22/" for 127.0.0.1 at 2022-01-09 20:56:39 -0300
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"22"}
+  [1m[36mUsuario Load (0.5ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios_controller.rb:63:in `set_usuario'
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/show.html.erb within layouts/application
+  [1m[36mTarefa Load (0.2ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ?[0m  [["usuario_id", 22]]
+  ↳ app/views/usuarios/show.html.erb:10
+  Rendered collection of tarefas/_tarefa.html.erb [2 times] (Duration: 4.3ms | Allocations: 718)
+  Rendered tarefas/_form.html.erb (Duration: 2.3ms | Allocations: 395)
+  Rendered usuarios/show.html.erb within layouts/application (Duration: 11.7ms | Allocations: 2181)
+  Rendered layout layouts/application.html.erb (Duration: 17.7ms | Allocations: 4579)
+Completed 200 OK in 24ms (Views: 18.8ms | ActiveRecord: 0.8ms | Allocations: 5407)
+
+
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "tarefas"[0m
+  [1m[35m (312.0ms)[0m  [1m[35mCREATE TABLE "tarefas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar, "descricao" varchar, "usuario_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "finalizada" boolean)[0m
+  [1m[35m (295.8ms)[0m  [1m[35mCREATE INDEX "index_tarefas_on_usuario_id" ON "tarefas" ("usuario_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "usuarios"[0m
+  [1m[35m (270.1ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "senha" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atarefas" ("id" integer NOT NULL PRIMARY KEY, "nome" varchar DEFAULT NULL, "descricao" varchar DEFAULT NULL, "usuario_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "finalizada" boolean DEFAULT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "tindex_atarefas_on_usuario_id" ON "atarefas" ("usuario_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "atarefas" ("id","nome","descricao","usuario_id","created_at","updated_at","finalizada")
+                     SELECT "id","nome","descricao","usuario_id","created_at","updated_at","finalizada" FROM "tarefas"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE "tarefas"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "tarefas" ("id" integer NOT NULL PRIMARY KEY, "nome" varchar DEFAULT NULL, "descricao" varchar DEFAULT NULL, "usuario_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "finalizada" boolean DEFAULT NULL, CONSTRAINT "fk_rails_6f90a9df9d"
+FOREIGN KEY ("usuario_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_tarefas_on_usuario_id" ON "tarefas" ("usuario_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "tarefas" ("id","nome","descricao","usuario_id","created_at","updated_at","finalizada")
+                     SELECT "id","nome","descricao","usuario_id","created_at","updated_at","finalizada" FROM "atarefas"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "atarefas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (174.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (273.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (185.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20220109152131)[0m
+  [1m[35m (182.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20220109142009),
+(20220109142200),
+(20220109151917);
+
+[0m
+  [1m[35m (316.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-01-09 23:58:31.337608"], ["updated_at", "2022-01-09 23:58:31.337608"]]
+  [1m[36mTRANSACTION (171.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "4fe69f0e61632e4e60f508b4850fdb59db19a4fd"], ["created_at", "2022-01-09 23:58:31.534724"], ["updated_at", "2022-01-09 23:58:31.534724"]]
+  [1m[36mTRANSACTION (195.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "tarefas"[0m
+  [1m[35m (305.1ms)[0m  [1m[35mCREATE TABLE "tarefas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar, "descricao" varchar, "usuario_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "finalizada" boolean)[0m
+  [1m[35m (295.8ms)[0m  [1m[35mCREATE INDEX "index_tarefas_on_usuario_id" ON "tarefas" ("usuario_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "usuarios"[0m
+  [1m[35m (270.5ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "senha" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atarefas" ("id" integer NOT NULL PRIMARY KEY, "nome" varchar DEFAULT NULL, "descricao" varchar DEFAULT NULL, "usuario_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "finalizada" boolean DEFAULT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "tindex_atarefas_on_usuario_id" ON "atarefas" ("usuario_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "atarefas" ("id","nome","descricao","usuario_id","created_at","updated_at","finalizada")
+                     SELECT "id","nome","descricao","usuario_id","created_at","updated_at","finalizada" FROM "tarefas"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE "tarefas"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "tarefas" ("id" integer NOT NULL PRIMARY KEY, "nome" varchar DEFAULT NULL, "descricao" varchar DEFAULT NULL, "usuario_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "finalizada" boolean DEFAULT NULL, CONSTRAINT "fk_rails_6f90a9df9d"
+FOREIGN KEY ("usuario_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_tarefas_on_usuario_id" ON "tarefas" ("usuario_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "tarefas" ("id","nome","descricao","usuario_id","created_at","updated_at","finalizada")
+                     SELECT "id","nome","descricao","usuario_id","created_at","updated_at","finalizada" FROM "atarefas"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "atarefas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (219.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (273.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (185.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20220109152131)[0m
+  [1m[35m (182.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20220109142009),
+(20220109142200),
+(20220109151917);
+
+[0m
+  [1m[35m (317.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-01-09 23:58:33.916253"], ["updated_at", "2022-01-09 23:58:33.916253"]]
+  [1m[36mTRANSACTION (176.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.6ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2022-01-09 23:58:34.112661"], ["key", "environment"]]
+  [1m[36mTRANSACTION (199.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "4fe69f0e61632e4e60f508b4850fdb59db19a4fd"], ["created_at", "2022-01-09 23:58:34.330069"], ["updated_at", "2022-01-09 23:58:34.330069"]]
+  [1m[36mTRANSACTION (200.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2022-01-09 20:58:51 -0300
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsuariosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/index.html.erb within layouts/application
+  Rendered usuarios/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 643)
+  Rendered layout layouts/application.html.erb (Duration: 86.1ms | Allocations: 23890)
+Completed 200 OK in 112ms (Views: 92.2ms | ActiveRecord: 0.0ms | Allocations: 32447)
+
+
+Started GET "/usuarios/new" for 127.0.0.1 at 2022-01-09 20:58:55 -0300
+Processing by UsuariosController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/new.html.erb within layouts/application
+  Rendered usuarios/_form.html.erb (Duration: 14.1ms | Allocations: 3546)
+  Rendered usuarios/new.html.erb within layouts/application (Duration: 17.1ms | Allocations: 3922)
+  Rendered layout layouts/application.html.erb (Duration: 22.2ms | Allocations: 6437)
+Completed 200 OK in 47ms (Views: 24.0ms | ActiveRecord: 2.5ms | Allocations: 11147)
+
+
+Started POST "/usuarios" for 127.0.0.1 at 2022-01-09 20:58:56 -0300
+Processing by UsuariosController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "usuario"=>{"email"=>"meap@cin.ufpe.br", "senha"=>"006Matth"}, "commit"=>"Cadastrar-se"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/usuarios_controller.rb:27:in `block in create'
+  [1m[36mUsuario Create (0.5ms)[0m  [1m[32mINSERT INTO "usuarios" ("email", "senha", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "meap@cin.ufpe.br"], ["senha", "006Matth"], ["created_at", "2022-01-09 23:58:56.958432"], ["updated_at", "2022-01-09 23:58:56.958432"]]
+  ↳ app/controllers/usuarios_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (452.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/usuarios_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/usuarios/1
+Completed 302 Found in 467ms (ActiveRecord: 453.2ms | Allocations: 3988)
+
+
+Started GET "/usuarios/1" for 127.0.0.1 at 2022-01-09 20:58:57 -0300
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUsuario Load (0.6ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios_controller.rb:63:in `set_usuario'
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/show.html.erb within layouts/application
+  [1m[36mTarefa Load (0.5ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ?[0m  [["usuario_id", 1]]
+  ↳ app/views/usuarios/show.html.erb:10
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 31)
+  Rendered tarefas/_form.html.erb (Duration: 19.5ms | Allocations: 6216)
+  Rendered usuarios/show.html.erb within layouts/application (Duration: 55.6ms | Allocations: 15427)
+  Rendered layout layouts/application.html.erb (Duration: 60.7ms | Allocations: 17930)
+Completed 200 OK in 73ms (Views: 60.0ms | ActiveRecord: 2.8ms | Allocations: 21033)
+
+
+Started POST "/usuarios/1/tarefas" for 127.0.0.1 at 2022-01-09 20:59:03 -0300
+Processing by TarefasController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "tarefa"=>{"nome"=>"asdas", "descricao"=>"asdasd"}, "commit"=>"Criar Tarefa", "usuario_id"=>"1"}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:43:in `set_usuario'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/tarefas_controller.rb:6:in `create'
+  [1m[36mTarefa Create (0.8ms)[0m  [1m[32mINSERT INTO "tarefas" ("nome", "descricao", "usuario_id", "created_at", "updated_at", "finalizada") VALUES (?, ?, ?, ?, ?, ?)[0m  [["nome", "asdas"], ["descricao", "asdasd"], ["usuario_id", 1], ["created_at", "2022-01-09 23:59:03.842366"], ["updated_at", "2022-01-09 23:59:03.842366"], ["finalizada", nil]]
+  ↳ app/controllers/tarefas_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (386.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/tarefas_controller.rb:6:in `create'
+Redirected to http://127.0.0.1:3000/usuarios/1
+Completed 302 Found in 411ms (ActiveRecord: 387.4ms | Allocations: 4437)
+
+
+Started GET "/usuarios/1" for 127.0.0.1 at 2022-01-09 20:59:04 -0300
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios_controller.rb:63:in `set_usuario'
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/show.html.erb within layouts/application
+  [1m[36mTarefa Load (0.5ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ?[0m  [["usuario_id", 1]]
+  ↳ app/views/usuarios/show.html.erb:10
+  Rendered collection of tarefas/_tarefa.html.erb [1 times] (Duration: 5.9ms | Allocations: 995)
+  Rendered tarefas/_form.html.erb (Duration: 3.4ms | Allocations: 424)
+  Rendered usuarios/show.html.erb within layouts/application (Duration: 17.2ms | Allocations: 2647)
+  Rendered layout layouts/application.html.erb (Duration: 27.8ms | Allocations: 5134)
+Completed 200 OK in 34ms (Views: 29.0ms | ActiveRecord: 0.8ms | Allocations: 5987)
+
+
+Started PATCH "/usuarios/1/tarefas/1/finalizada" for 127.0.0.1 at 2022-01-09 20:59:06 -0300
+Processing by TarefasController#finalizada as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "usuario_id"=>"1", "id"=>"1"}
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:43:in `set_usuario'
+  [1m[36mTarefa Load (0.3ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ? AND "tarefas"."id" = ? LIMIT ?[0m  [["usuario_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:47:in `set_tarefa'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/tarefas_controller.rb:35:in `finalizada'
+  [1m[36mTarefa Update (0.4ms)[0m  [1m[33mUPDATE "tarefas" SET "updated_at" = ?, "finalizada" = ? WHERE "tarefas"."id" = ?[0m  [["updated_at", "2022-01-09 23:59:06.498864"], ["finalizada", 1], ["id", 1]]
+  ↳ app/controllers/tarefas_controller.rb:35:in `finalizada'
+  [1m[36mTRANSACTION (391.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/tarefas_controller.rb:35:in `finalizada'
+Redirected to http://127.0.0.1:3000/usuarios/1
+Completed 302 Found in 407ms (ActiveRecord: 392.8ms | Allocations: 3730)
+
+
+Started GET "/usuarios/1" for 127.0.0.1 at 2022-01-09 20:59:06 -0300
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios_controller.rb:63:in `set_usuario'
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/show.html.erb within layouts/application
+  [1m[36mTarefa Load (0.3ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ?[0m  [["usuario_id", 1]]
+  ↳ app/views/usuarios/show.html.erb:10
+  Rendered collection of tarefas/_tarefa.html.erb [1 times] (Duration: 1.3ms | Allocations: 374)
+  Rendered tarefas/_form.html.erb (Duration: 1.7ms | Allocations: 395)
+  Rendered usuarios/show.html.erb within layouts/application (Duration: 7.2ms | Allocations: 1847)
+  Rendered layout layouts/application.html.erb (Duration: 12.4ms | Allocations: 4245)
+Completed 200 OK in 17ms (Views: 13.2ms | ActiveRecord: 0.5ms | Allocations: 5057)
+
+
+Started PATCH "/usuarios/1/tarefas/1/finalizada" for 127.0.0.1 at 2022-01-09 20:59:10 -0300
+Processing by TarefasController#finalizada as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "usuario_id"=>"1", "id"=>"1"}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:43:in `set_usuario'
+  [1m[36mTarefa Load (0.2ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ? AND "tarefas"."id" = ? LIMIT ?[0m  [["usuario_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:47:in `set_tarefa'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/tarefas_controller.rb:32:in `finalizada'
+  [1m[36mTarefa Update (0.5ms)[0m  [1m[33mUPDATE "tarefas" SET "updated_at" = ?, "finalizada" = ? WHERE "tarefas"."id" = ?[0m  [["updated_at", "2022-01-09 23:59:10.456880"], ["finalizada", 0], ["id", 1]]
+  ↳ app/controllers/tarefas_controller.rb:32:in `finalizada'
+  [1m[36mTRANSACTION (359.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/tarefas_controller.rb:32:in `finalizada'
+Redirected to http://127.0.0.1:3000/usuarios/1
+Completed 302 Found in 381ms (ActiveRecord: 360.7ms | Allocations: 3461)
+
+
+Started GET "/usuarios/1" for 127.0.0.1 at 2022-01-09 20:59:10 -0300
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios_controller.rb:63:in `set_usuario'
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/show.html.erb within layouts/application
+  [1m[36mTarefa Load (0.3ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ?[0m  [["usuario_id", 1]]
+  ↳ app/views/usuarios/show.html.erb:10
+  Rendered collection of tarefas/_tarefa.html.erb [1 times] (Duration: 2.6ms | Allocations: 409)
+  Rendered tarefas/_form.html.erb (Duration: 2.8ms | Allocations: 395)
+  Rendered usuarios/show.html.erb within layouts/application (Duration: 12.4ms | Allocations: 1858)
+  Rendered layout layouts/application.html.erb (Duration: 22.9ms | Allocations: 4254)
+Completed 200 OK in 29ms (Views: 24.3ms | ActiveRecord: 0.6ms | Allocations: 5064)
+
+
+Started GET "/usuarios/1/tarefas/1/edit" for 127.0.0.1 at 2022-01-09 20:59:13 -0300
+Processing by TarefasController#edit as HTML
+  Parameters: {"usuario_id"=>"1", "id"=>"1"}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:43:in `set_usuario'
+  [1m[36mTarefa Load (0.3ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ? AND "tarefas"."id" = ? LIMIT ?[0m  [["usuario_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:47:in `set_tarefa'
+  Rendering layout layouts/application.html.erb
+  Rendering tarefas/edit.html.erb within layouts/application
+  Rendered tarefas/_form_update.html.erb (Duration: 5.8ms | Allocations: 872)
+  Rendered tarefas/edit.html.erb within layouts/application (Duration: 8.5ms | Allocations: 1185)
+  Rendered layout layouts/application.html.erb (Duration: 18.7ms | Allocations: 3736)
+Completed 200 OK in 33ms (Views: 22.8ms | ActiveRecord: 0.6ms | Allocations: 5870)
+
+
+Started PATCH "/usuarios/1/tarefas/1" for 127.0.0.1 at 2022-01-09 20:59:18 -0300
+Processing by TarefasController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "tarefa"=>{"nome"=>"asdas", "descricao"=>"salve"}, "commit"=>"Editar", "usuario_id"=>"1", "id"=>"1"}
+  [1m[36mUsuario Load (0.4ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:43:in `set_usuario'
+  [1m[36mTarefa Load (0.3ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ? AND "tarefas"."id" = ? LIMIT ?[0m  [["usuario_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:47:in `set_tarefa'
+  [1m[36mCACHE Tarefa Load (0.1ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ? AND "tarefas"."id" = ? LIMIT ?[0m  [["usuario_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:11:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/tarefas_controller.rb:12:in `update'
+  [1m[36mTarefa Update (0.7ms)[0m  [1m[33mUPDATE "tarefas" SET "descricao" = ?, "updated_at" = ? WHERE "tarefas"."id" = ?[0m  [["descricao", "salve"], ["updated_at", "2022-01-09 23:59:18.936455"], ["id", 1]]
+  ↳ app/controllers/tarefas_controller.rb:12:in `update'
+  [1m[36mTRANSACTION (360.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/tarefas_controller.rb:12:in `update'
+Redirected to http://127.0.0.1:3000/usuarios/1
+Completed 302 Found in 390ms (ActiveRecord: 361.9ms | Allocations: 4494)
+
+
+Started GET "/usuarios/1" for 127.0.0.1 at 2022-01-09 20:59:19 -0300
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUsuario Load (0.2ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios_controller.rb:63:in `set_usuario'
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/show.html.erb within layouts/application
+  [1m[36mTarefa Load (0.2ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ?[0m  [["usuario_id", 1]]
+  ↳ app/views/usuarios/show.html.erb:10
+  Rendered collection of tarefas/_tarefa.html.erb [1 times] (Duration: 1.5ms | Allocations: 416)
+  Rendered tarefas/_form.html.erb (Duration: 1.8ms | Allocations: 413)
+  Rendered usuarios/show.html.erb within layouts/application (Duration: 7.3ms | Allocations: 1914)
+  Rendered layout layouts/application.html.erb (Duration: 12.8ms | Allocations: 4310)
+Completed 200 OK in 17ms (Views: 13.6ms | ActiveRecord: 0.4ms | Allocations: 5136)
+
+
+Started PATCH "/usuarios/1/tarefas/1/finalizada" for 127.0.0.1 at 2022-01-09 20:59:21 -0300
+Processing by TarefasController#finalizada as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "usuario_id"=>"1", "id"=>"1"}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:43:in `set_usuario'
+  [1m[36mTarefa Load (0.3ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ? AND "tarefas"."id" = ? LIMIT ?[0m  [["usuario_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tarefas_controller.rb:47:in `set_tarefa'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/tarefas_controller.rb:35:in `finalizada'
+  [1m[36mTarefa Update (0.6ms)[0m  [1m[33mUPDATE "tarefas" SET "updated_at" = ?, "finalizada" = ? WHERE "tarefas"."id" = ?[0m  [["updated_at", "2022-01-09 23:59:21.457871"], ["finalizada", 1], ["id", 1]]
+  ↳ app/controllers/tarefas_controller.rb:35:in `finalizada'
+  [1m[36mTRANSACTION (419.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/tarefas_controller.rb:35:in `finalizada'
+Redirected to http://127.0.0.1:3000/usuarios/1
+Completed 302 Found in 439ms (ActiveRecord: 421.0ms | Allocations: 3450)
+
+
+Started GET "/usuarios/1" for 127.0.0.1 at 2022-01-09 20:59:21 -0300
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUsuario Load (0.3ms)[0m  [1m[34mSELECT "usuarios".* FROM "usuarios" WHERE "usuarios"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/usuarios_controller.rb:63:in `set_usuario'
+  Rendering layout layouts/application.html.erb
+  Rendering usuarios/show.html.erb within layouts/application
+  [1m[36mTarefa Load (0.4ms)[0m  [1m[34mSELECT "tarefas".* FROM "tarefas" WHERE "tarefas"."usuario_id" = ?[0m  [["usuario_id", 1]]
+  ↳ app/views/usuarios/show.html.erb:10
+  Rendered collection of tarefas/_tarefa.html.erb [1 times] (Duration: 2.5ms | Allocations: 371)
+  Rendered tarefas/_form.html.erb (Duration: 3.4ms | Allocations: 394)
+  Rendered usuarios/show.html.erb within layouts/application (Duration: 12.5ms | Allocations: 1815)
+  Rendered layout layouts/application.html.erb (Duration: 22.0ms | Allocations: 4211)
+Completed 200 OK in 28ms (Views: 23.3ms | ActiveRecord: 0.7ms | Allocations: 5021)
+
+
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "tarefas"[0m
+  [1m[35m (272.4ms)[0m  [1m[35mCREATE TABLE "tarefas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar, "descricao" varchar, "usuario_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "finalizada" boolean)[0m
+  [1m[35m (284.9ms)[0m  [1m[35mCREATE INDEX "index_tarefas_on_usuario_id" ON "tarefas" ("usuario_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "usuarios"[0m
+  [1m[35m (292.7ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "senha" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atarefas" ("id" integer NOT NULL PRIMARY KEY, "nome" varchar DEFAULT NULL, "descricao" varchar DEFAULT NULL, "usuario_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "finalizada" boolean DEFAULT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "tindex_atarefas_on_usuario_id" ON "atarefas" ("usuario_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "atarefas" ("id","nome","descricao","usuario_id","created_at","updated_at","finalizada")
+                     SELECT "id","nome","descricao","usuario_id","created_at","updated_at","finalizada" FROM "tarefas"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE "tarefas"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "tarefas" ("id" integer NOT NULL PRIMARY KEY, "nome" varchar DEFAULT NULL, "descricao" varchar DEFAULT NULL, "usuario_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "finalizada" boolean DEFAULT NULL, CONSTRAINT "fk_rails_6f90a9df9d"
+FOREIGN KEY ("usuario_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_tarefas_on_usuario_id" ON "tarefas" ("usuario_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "tarefas" ("id","nome","descricao","usuario_id","created_at","updated_at","finalizada")
+                     SELECT "id","nome","descricao","usuario_id","created_at","updated_at","finalizada" FROM "atarefas"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "atarefas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (237.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (314.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (176.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20220109152131)[0m
+  [1m[35m (205.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20220109142009),
+(20220109142200),
+(20220109151917);
+
+[0m
+  [1m[35m (314.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-01-09 23:59:32.511286"], ["updated_at", "2022-01-09 23:59:32.511286"]]
+  [1m[36mTRANSACTION (184.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "4fe69f0e61632e4e60f508b4850fdb59db19a4fd"], ["created_at", "2022-01-09 23:59:32.721070"], ["updated_at", "2022-01-09 23:59:32.721070"]]
+  [1m[36mTRANSACTION (216.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "tarefas"[0m
+  [1m[35m (271.1ms)[0m  [1m[35mCREATE TABLE "tarefas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar, "descricao" varchar, "usuario_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "finalizada" boolean)[0m
+  [1m[35m (295.6ms)[0m  [1m[35mCREATE INDEX "index_tarefas_on_usuario_id" ON "tarefas" ("usuario_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "usuarios"[0m
+  [1m[35m (282.0ms)[0m  [1m[35mCREATE TABLE "usuarios" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "senha" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TEMPORARY TABLE "atarefas" ("id" integer NOT NULL PRIMARY KEY, "nome" varchar DEFAULT NULL, "descricao" varchar DEFAULT NULL, "usuario_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "finalizada" boolean DEFAULT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE INDEX "tindex_atarefas_on_usuario_id" ON "atarefas" ("usuario_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "atarefas" ("id","nome","descricao","usuario_id","created_at","updated_at","finalizada")
+                     SELECT "id","nome","descricao","usuario_id","created_at","updated_at","finalizada" FROM "tarefas"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE "tarefas"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "tarefas" ("id" integer NOT NULL PRIMARY KEY, "nome" varchar DEFAULT NULL, "descricao" varchar DEFAULT NULL, "usuario_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "finalizada" boolean DEFAULT NULL, CONSTRAINT "fk_rails_6f90a9df9d"
+FOREIGN KEY ("usuario_id")
+  REFERENCES "usuarios" ("id")
+)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_tarefas_on_usuario_id" ON "tarefas" ("usuario_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "tarefas" ("id","nome","descricao","usuario_id","created_at","updated_at","finalizada")
+                     SELECT "id","nome","descricao","usuario_id","created_at","updated_at","finalizada" FROM "atarefas"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "atarefas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (172.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (295.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (174.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20220109152131)[0m
+  [1m[35m (194.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20220109142009),
+(20220109142200),
+(20220109151917);
+
+[0m
+  [1m[35m (315.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-01-09 23:59:35.067479"], ["updated_at", "2022-01-09 23:59:35.067479"]]
+  [1m[36mTRANSACTION (177.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.6ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2022-01-09 23:59:35.262930"], ["key", "environment"]]
+  [1m[36mTRANSACTION (200.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "4fe69f0e61632e4e60f508b4850fdb59db19a4fd"], ["created_at", "2022-01-09 23:59:35.481373"], ["updated_at", "2022-01-09 23:59:35.481373"]]
+  [1m[36mTRANSACTION (190.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
